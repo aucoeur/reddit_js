@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Comment = require('../models/comment');
 
 module.exports = app => {
   // INDEX
@@ -35,15 +36,14 @@ module.exports = app => {
   // Show one post
   app.get("/posts/:id", function (req, res) {
     // LOOK UP THE POST
-    Post.findById(req.params.id).lean()
-      .then(post => {
-        res.render("posts-show", {
+    Post.findById(req.params.id).populate('comments').lean()
+      .then((post) => {
+        res.render('post-show', {
           post
-        });
+        })
+      }).catch((err) => {
+        console.log(err.message)
       })
-      .catch(err => {
-        console.log(err.message);
-      });
   });
 
   // SUBREDDIT

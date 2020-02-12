@@ -27,6 +27,7 @@ app.use(expressValidator());
 
 // Controllers
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 
 // Run Server
 app.listen(port, () => console.log(`Listening on port ${port}!`))
