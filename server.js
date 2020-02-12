@@ -30,3 +30,6 @@ require('./controllers/posts.js')(app);
 
 // Run Server
 app.listen(port, () => console.log(`Listening on port ${port}!`))
+
+// Export for Mocha to run tests
+module.exports = app;
