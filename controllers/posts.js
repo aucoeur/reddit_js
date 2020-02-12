@@ -2,8 +2,8 @@ const Post = require('../models/post');
 
 module.exports = app => {
   // INDEX
-  app.post('/', (req, res) => {
-    Post.find({})
+  app.get('/', (req, res) => {
+    Post.find({}).lean() // added .lean() to fix  'Access has been denied to resolve the property "url" because it is not an "own property" of its parent.'
         .then(posts => {
             res.render("posts-index", { posts });
         })
@@ -12,7 +12,11 @@ module.exports = app => {
         });
   });
 
-    // CREATE
+  // CREATE
+  app.get('/posts/new', (req, res) => {
+    res.render('posts-new')
+  });
+
   app.post("/posts/new", (req, res) => {
         // INSTANTIATE INSTANCE OF POST MODEL
       const post = new Post(req.body);

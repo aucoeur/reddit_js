@@ -3,13 +3,14 @@
         {{#if posts}}
         <ul>
             {{#each posts}}
-            <li class="list-group-item">
-                <div class="lead"><a href="/posts/{{this._id}}">{{this.title}}</a></div>>
-            </li>
+                <li class="list-group-item">
+                    <div class="lead">{{this.title}}</div>
+                    <a href="{{this.url}}" target="_blank">{{this.url}}</a>
+                </li>
             {{/each}}
         </ul>
         {{ else }}
-        <h2>Ya done ducked up</h2>
+        <h2>Ya done ducked somefink up</h2>
         {{/if}}
     </div>
 </div>
