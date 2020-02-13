@@ -1,4 +1,4 @@
-const app = require("./../server");
+const app = require("./../server").default;
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -6,7 +6,7 @@ const expect = chai.expect;
 // Import the Post model from our models folder so we
 // we can use it in our tests.
 const Post = require('../models/post');
-const server = require('../server');
+const server = require('../server').default;
 
 chai.should();
 chai.use(chaiHttp);

@@ -4,10 +4,12 @@ const Comment = require('../models/comment');
 module.exports = app => {
   // INDEX
   app.get('/', (req, res) => {
+    let currentUser = req.user
     Post.find({}).lean() // added .lean() to fix  'Access has been denied to resolve the property "url" because it is not an "own property" of its parent.'
       .then(posts => {
         res.render("posts-index", {
-          posts
+          posts,
+          currentUser
         });
       })
       .catch(err => {
@@ -16,8 +18,16 @@ module.exports = app => {
   });
 
   // CREATE
-  app.get('/posts/new', (req, res) => {
-    res.render('posts-new')
+  app.post("/posts/new", (req, res) => {
+    if (req.user) {
+      let post = new Post(req.body);
+
+      post.save(function (err, post) {
+        return res.redirect(`/`);
+      });
+    } else {
+      return res.status(401); // UNAUTHORIZED
+    }
   });
 
   app.post("/posts/new", (req, res) => {
