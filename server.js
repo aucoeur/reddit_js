@@ -31,6 +31,7 @@ const checkAuth = (req, res, next) => {
 
 // Add this after you initialize express.
 app.use(cookieParser()); 
+
 // Handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
