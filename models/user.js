@@ -10,8 +10,8 @@ const UserSchema = new Schema({
   posts : [{ type: Schema.Types.ObjectId, ref: "Post" }]
 });
 
-// Must use function here! ES6 => functions do not bind this!
-UserSchema.pre("save", (next) => {
+// Must use function(next) here! ES6 => functions do not work with this!!
+UserSchema.pre("save", function(next) {
   // SET createdAt AND updatedAt
   const now = new Date();
   this.updatedAt = now;
