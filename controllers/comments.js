@@ -18,7 +18,7 @@ module.exports = function (app) {
                     return post.save();
                 })
                 .then(post => {
-                    res.redirect(`/`);
+                    res.redirect(`/posts/${post._id}`);
                 })
                 .catch(err => {
                     console.log(err);

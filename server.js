@@ -21,8 +21,8 @@ const checkAuth = (req, res, next) => {
   if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
     req.user = null;
   } else {
-    var token = req.cookies.nToken;
-    var decodedToken = jwt.decode(token, { complete: true }) || {};
+    const token = req.cookies.nToken;
+    const decodedToken = jwt.decode(token, { complete: true }) || {};
     req.user = decodedToken.payload;
   }
 
