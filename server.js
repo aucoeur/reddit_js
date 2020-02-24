@@ -50,6 +50,7 @@ app.use(checkAuth);
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
+require('./controllers/replies.js')(app);
 
 // Run Server
 app.listen(port, () => console.log(`Listening on port ${port}! http://localhost:${port}`))
