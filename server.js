@@ -52,7 +52,7 @@ require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
 
 // Run Server
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+app.listen(port, () => console.log(`Listening on port ${port}! http://localhost:${port}`))
 
 // Export for Mocha to run tests
 module.exports = app;
