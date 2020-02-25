@@ -18,8 +18,13 @@ module.exports = app => {
       });
   });
 
-  // CREATE
-  app.post("/post/new", (req, res) => {
+  // NEW POST
+  app.get("/posts/new", (req, res) => {
+        const currentUser = req.user;
+        res.render("posts-new.handlebars", { currentUser });
+    });
+
+  app.post("/posts/new", (req, res) => {
     if (req.user) {
       console.log(req.user)
       const post = new Post(req.body);
@@ -44,7 +49,7 @@ module.exports = app => {
 
   app.get("/posts/:id", function (req, res) {
     // LOOK UP THE POST
-    var currentUser = req.user;
+    const currentUser = req.user;
     Post.findById(req.params.id).populate('comments').lean()
       .then(post => {
         res.render("posts-show", {
