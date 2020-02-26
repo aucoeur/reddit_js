@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 const Populate = require("../utils/autopopulate")
 
 const PostSchema = new Schema({
-  createdAt: {
-    type: Date
-  },
-  updatedAt: {
-    type: Date
-  },
+  // createdAt: {
+  //   type: Date
+  // },
+  // updatedAt: {
+  //   type: Date
+  // },
   title: {
     type: String,
     required: true
@@ -45,16 +45,16 @@ PostSchema
     Populate('comments')
     Populate('author');
   })
-  .pre("save", function (next) {
-    // SET createdAt AND updatedAt
-    const now = new Date();
-    this.updatedAt = now;
+  // .pre("save", function (next) {
+  //   // SET createdAt AND updatedAt
+  //   const now = new Date();
+  //   this.updatedAt = now;
 
-    if (!this.createdAt) {
-      this.createdAt = now;
-    }
+  //   if (!this.createdAt) {
+  //     this.createdAt = now;
+  //   }
 
-    next();
-  });
+  //   next();
+  // });
 
 module.exports = mongoose.model("Post", PostSchema)
